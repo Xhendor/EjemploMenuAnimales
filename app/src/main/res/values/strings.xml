@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Animales</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_activity_cerdo">ActivityCerdo</string>
+    <string name="title_activity_activity_pollo">ActivityPollo</string>
+    <string name="title_activity_activity_vaca">ActivityVaca</string>
+    <string name="title_activity_activity_foto">ActivityFoto</string>
+    <string name="title_activity_familia_botones">FamiliaBotones</string>
+</resources>
