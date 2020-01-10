@@ -1,13 +1,13 @@
 package com.example.edgar.animales;
 
-import android.support.v7.app.ActionBarActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 
-public class ActivityVaca extends ActionBarActivity {
+public class ActivityVaca extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

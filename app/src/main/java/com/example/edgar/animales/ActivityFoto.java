@@ -1,13 +1,13 @@
 package com.example.edgar.animales;
 
-import android.support.v7.app.ActionBarActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 
-public class ActivityFoto extends ActionBarActivity implements View.OnClickListener{
+public class ActivityFoto extends AppCompatActivity implements View.OnClickListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

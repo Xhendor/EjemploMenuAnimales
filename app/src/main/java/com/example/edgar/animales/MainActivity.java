@@ -1,15 +1,20 @@
 package com.example.edgar.animales;
 
-import android.app.Activity;
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
+import android.os.StrictMode;
 import android.provider.MediaStore;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
+
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,10 +23,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.File;
-import java.io.IOException;
 
 
-public class MainActivity extends ActionBarActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
       private final String ruta_fotos = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/misfotos/";
       private File file = new File(ruta_fotos);
       private Button botonfoto;
@@ -40,7 +44,11 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-       // tx = (TextView) findViewById(R.id.textView);
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
+
+
+        // tx = (TextView) findViewById(R.id.textView);
         img = (ImageView)this.findViewById(R.id.verImagen);
         botonfoto = (Button) this.findViewById(R.id.buttonFoto);
 
@@ -57,8 +65,9 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                         android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
                 //Creamos una carpeta en la memeria del terminal
                 File imagesFolder = new File(
-                        Environment.getExternalStorageDirectory(), "Fotoo");
+                        getApplicationContext().getExternalFilesDir(null), "Fotoo");
                 imagesFolder.mkdirs();
+                System.err.println("Soy el path:"+imagesFolder.getPath());
                 //añadimos el nombre de la imagen
                 File image = new File(imagesFolder, "foto.jpg");
                 Uri uriSavedImage = Uri.fromFile(image);
@@ -67,6 +76,19 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                 //Lanzamos la aplicacion de la camara con retorno (forResult)
                 startActivityForResult(cameraIntent, 1);
             }});
+
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (checkSelfPermission(Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            requestPermissions(new String[]{Manifest.permission.CAMERA},
+                    10);
+        }
 
     }
 

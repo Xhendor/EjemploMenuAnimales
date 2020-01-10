@@ -1,14 +1,13 @@
 package com.example.edgar.animales;
 
-import android.support.v7.app.ActionBarActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.CompoundButton;
 
 
-public class FamiliaBotones extends ActionBarActivity implements
+public class FamiliaBotones extends AppCompatActivity implements
         CompoundButton.OnCheckedChangeListener{
 
     @Override
